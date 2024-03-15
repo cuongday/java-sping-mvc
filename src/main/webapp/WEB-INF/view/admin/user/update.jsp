@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,17 +12,6 @@
         <title>Dashboard - SB Admin</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(() => {
-                const avatarFile = $('#avatarFile');
-                avatarFile.change(function(e){
-                    const imgURL = URL.createObjectURL(e.target.files[0]);
-                    $("#avatarPreview").attr('src', imgURL);
-                    $("#avatarPreview").css('display', 'block');
-                });
-            });
-        </script>
     </head>
     <body class="sb-nav-fixed">
         <jsp:include page="../layout/header.jsp" />
@@ -41,62 +30,62 @@
 
                         <div class="container container-xl mt-5">    
                             <div class="row">
-                                <div class="col-md-6 col-12 mb-3 col-12 mx-auto">
+                                <div class="col-md-6 col-12 mx-auto">
                                     <h2>
-                                        Create User
+                                        Update User
                                     </h2>
                                     <hr>
-                                    <form:form class="row g-3" method="post" action="/admin/user/create" modelAttribute="newUser" enctype="multipart/form-data">
-                                        <div class="col-md-6 col-12 mb-3">
+                                    <form:form method="post" action="/admin/user/update" modelAttribute="newUser" enctype="multipart/form-data">
+        
+                                        <div class="mb-3" style="display: none;">
+                                            <label class="form-label">ID:</label>
+                                            <form:input type="text" class="form-control"
+                                            path = "id"
+                                            />
+                                        </div>
+        
+                                        <div class="mb-3">
                                             <label class="form-label">Email:</label>
                                             <form:input type="email" class="form-control"
-                                            path = "email"
+                                            path = "email" disabled = "true"
                                             />
                                         </div>
-                                        <div class="col-md-6 col-12 mb-3">
-                                            <label class="form-label">Password:</label>
-                                            <form:input type="password" class="form-control"
-                                            path = "password"
-                                            />
-                                        </div>
-                                        <div class="col-md-6 col-12 mb-3">
+                                        
+                                        <div class="mb-3">
                                             <label class="form-label">Phone number:</label>
                                             <form:input type="text" class="form-control"
                                             path = "phoneNumber"
                                             />
                                         </div>
-                                        <div class="col-md-6 col-12 mb-3">
+                                        <div class="mb-3">
                                             <label class="form-label">Fullname:</label>
                                             <form:input type="text" class="form-control"
                                             path = "fullName"
                                             />
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="mb-3">
                                             <label class="form-label">Address:</label>
                                             <form:input type="text" class="form-control"
                                             path = "address"
                                             />
                                         </div>
-
-                                        <div class="col-md-6 col-12 mb-3">
+                                        <div class="mb-3">
                                             <label class="form-label">Role:</label>
                                             <form:select class="form-select" aria-label="Default select example" path="role.name">
                                                 <option value="ADMIN">Admin</option>
-                                                <option value="USER">User</option> 
+                                                <option value="USER">User</option>
                                             </form:select>
                                         </div>
-                                        <div class="col-md-6 col-12 mb-3">                                           
+                                        <div class="mb-3">
                                             <label for="avatarFile" class="form-label">Avatar:</label>
-                                            <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg" name="uploadAvatarFile"> 
+                                            <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg" name="uploadAvatarFile">
                                         </div>
 
                                         <div class="col-12 mb-3">
                                             <img style="max-height: 250px; display:none;" alt="avatar preview" id="avatarPreview">
                                         </div>
                                         
-                                        <div class="col-12 mb-5">
-                                            <button type="submit" class="btn btn-primary">Create</button>
-                                        </div>
+                                        <button type="submit" class="btn btn-warning">Update</button>
                                     </form:form>
                                 </div>
                             </div>
